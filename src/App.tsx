@@ -1,7 +1,37 @@
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tree, { INode } from './components/Tree/Tree';
 
 function App() {
+  const tree: INode[] = [
+    {
+      name: "First file"
+    },
+    {
+      name: "Second file"
+    },
+    {
+      name: "First Directory",
+      subtree: [
+        {
+          name: "First file of directory"
+        },
+        {
+          name: "First subdirectory",
+          subtree: [
+            {
+              name: "First file of subdirectory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: "Third file"
+    },
+    {
+      name: "Fourth file"
+    },
+  ]
+
   return (
     <main className="main">
       <div className="container neutral">
@@ -10,37 +40,7 @@ function App() {
       </div>
       <div className="container">
         <h2>Basic directory tree</h2>
-        <ul className="tree">
-          <li>
-            First file
-          </li>
-          <li>
-            Second file
-          </li>
-          <li>
-            <button>
-              <FontAwesomeIcon icon={faMinus} />
-              <span>First directory</span>
-            </button>
-            <ul>
-              <li>
-                First file of directory
-              </li>
-              <li>
-                <button>
-                  <FontAwesomeIcon icon={faPlus} />
-                  <span>First subdirectory</span>
-                </button>
-              </li>
-            </ul>
-          </li>
-          <li>
-            Third file
-          </li>
-          <li>
-            Fourth file
-          </li>
-        </ul>
+        <Tree tree={tree} />
       </div>
     </main>
   );
