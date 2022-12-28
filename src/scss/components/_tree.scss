@@ -1,0 +1,15 @@
+.tree {
+  button {
+    background: none;
+    border: none;
+    position: relative;
+  }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    transform: translate(-100%, -50%);
+    width: 12px;
+    height: 12px;
+  }
+}
