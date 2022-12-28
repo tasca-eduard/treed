@@ -1,6 +1,8 @@
 import Tree, { INode } from './components/Tree/Tree';
+import { useState } from "react";
 
 function App() {
+  const [isSorted, setIsSorted] = useState(false)
   const tree: INode[] = [
     {
       name: "First file"
@@ -25,12 +27,60 @@ function App() {
       ]
     },
     {
-      name: "Third file"
+      name: "Third file",
+      subtree: [
+        {
+          name: "First file of directory"
+        },
+        {
+          name: "First subdirectory",
+          subtree: [
+            {
+              name: "First file of subdirectory",
+              subtree: [
+                {
+                  name: "First file of directory"
+                },
+                {
+                  name: "First subdirectory",
+                  subtree: [
+                    {
+                      name: "First file of subdirectory"
+                    },
+                    {
+                      name: "First file"
+                    },
+                    {
+                      name: "Second file"
+                    },
+                  ]
+                },
+                {
+                  name: "First file"
+                },
+                {
+                  name: "Second file"
+                },
+              ]
+            },
+            {
+              name: "First file"
+            },
+            {
+              name: "Second file"
+            },
+          ]
+        }
+      ]
     },
     {
       name: "Fourth file"
     },
   ]
+
+  function handleSort() {
+    setIsSorted(prev => !prev);
+  }
 
   return (
     <main className="main">
@@ -39,8 +89,22 @@ function App() {
         <p>An approach for creating system trees.</p>
       </div>
       <div className="container">
-        <h2>Basic directory tree</h2>
-        <Tree tree={tree} />
+        <h2>Basic <em title="allegedly">system tree</em></h2>
+        <button 
+          className={[
+            "btn",
+            isSorted ? "active" : ""
+          ].join(" ")}
+          onClick={handleSort}
+        >
+          Sort by name
+        </button>
+        <br />
+        <h3>System Summary</h3>
+        <Tree 
+          tree={tree} 
+          isSorted={isSorted}
+        />
       </div>
     </main>
   );

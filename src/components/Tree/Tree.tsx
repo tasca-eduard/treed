@@ -6,19 +6,28 @@ export interface INode {
 }
 
 interface Props {
-  tree: INode[]
+  tree: INode[],
+  isSorted: boolean
 }
 
 export default function Tree({
-  tree
+  tree,
+  isSorted
 }: Props) {
+  function handleSort(current: INode, next: INode) {
+    return current.name.localeCompare(next.name);
+  }
+ 
   return (
     <ul className="tree">
-      {tree.map(node => {
+      {tree.sort(isSorted ? handleSort : undefined).map(node => {
         return (
           <>
-            {node.subtree ? (
-              <Subtree node={node} />
+            {Boolean(node.subtree) ? (
+              <Subtree 
+                node={node} 
+                isSorted={isSorted}
+              />
             ) : (
               <li>{node.name}</li>
             )}

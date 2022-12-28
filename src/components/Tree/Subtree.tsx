@@ -4,11 +4,13 @@ import { useState } from "react";
 import Tree, { INode } from "./Tree";
 
 interface Props {
-  node: INode
+  node: INode,
+  isSorted: boolean
 }
 
 export default function Subtree({
-  node
+  node,
+  isSorted
 }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
   const icon = isExpanded ? faMinus : faPlus;
@@ -18,7 +20,7 @@ export default function Subtree({
   }
 
   return (
-    <>
+    <li>
       <button
         onClick={handleExpanded}
       >
@@ -28,8 +30,11 @@ export default function Subtree({
       </button>
       {isExpanded && (
         // subtree exists because we are validating outside the component
-        <Tree tree={node.subtree!} />
+        <Tree 
+          tree={node.subtree!} 
+          isSorted={isSorted}
+        />
       )}
-    </>
+    </li>
   )
 }

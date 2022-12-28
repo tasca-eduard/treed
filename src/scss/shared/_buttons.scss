@@ -1,5 +1,4 @@
 .btn {
-    width: 100%;
     border: none;
     border: 2px solid var(--secondaryBg);
     border-bottom: 2px solid var(--primaryBorder);
@@ -9,13 +8,13 @@
     text-transform: uppercase;
     font-weight: 700;
     transition: .2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
     
     &:hover,
-    &:focus {
+    &:focus-visible,
+    .active {
         background: var(--secondaryBgDark);
         border-bottom: 2px solid var(--accent);
         outline: none;
